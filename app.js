@@ -4,10 +4,14 @@ const morgan = require("morgan")
 const wikiRouter = require('./routes/wiki')
 const userRouter = require('./routes/user')
 
+// const bodyParser = require()
+
+
 
 const app = express()
 
 app.use(morgan('dev'))
+app.use (express.urlencoded({extended: false}))
 app.use('/wiki', wikiRouter);
 app.use('/user', userRouter);
 

@@ -35,5 +35,22 @@ const User = db.define('user', {
   }
 });
 
+
+
+function generateSlug (title){
+
+  return title.replace(/\s+/g, '_').replace(/\W/g, '');
+}
+
+
+Page.beforeValidate((pageInstance) =>{
+    pageInstance.slug = generateSlug(pageInstance.title)
+
+})
+
+
+
+
+
 module.exports = { Page, User, db };
 
