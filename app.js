@@ -1,8 +1,21 @@
 const { db, User, Page } = require('./models');
-
 const express = require("express")
+const morgan = require("morgan")
+const wikiRouter = require('./routes/wiki')
+const userRouter = require('./routes/user')
+
 
 const app = express()
+
+app.use(morgan('dev'))
+app.use('/wiki', wikiRouter);
+app.use('/user', userRouter);
+
+app.get("/", (req, res) => {
+  res.redirect('/wiki')
+})
+
+
 
 const PORT = 3000
 
